@@ -3,4 +3,7 @@ layout: default
 title: Rhythmachines Tutorial
 ---
 
-{% include tutorial.md %}
+<div>
+{% capture p1 %}{% include tutorial.md %}{% endcapture %}
+{{ p1 | markdownify }}
+</div>
