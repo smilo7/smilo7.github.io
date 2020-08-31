@@ -1,3 +1,8 @@
+---
+layout: default
+title: Tutorial
+---
+
 # Introduction to the RHYTHMACHINES Sequencer.
 
 This is the first tutorial for a new music sequencer within the sema environment. If you are unfamiliar with sema, it is a web based playground where you can rapidly prototype live coding mini-languages for signal synthesis, machine learning and machine listening.
