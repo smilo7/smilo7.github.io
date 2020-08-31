@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Rhythmachines Tutorial
+title: Tutorial
 ---
 
 <div>
-{% capture p1 %}{% include tutorial.md %}{% endcapture %}
-{{ p1 | markdownify }}
+{% capture my_include %}{% include tutorial.md %}{% endcapture %}
+{{ my_include | markdownify }}
 </div>
