@@ -12,7 +12,7 @@ The result is a novel sequencing interface within the sema playground, where you
 
 In our sequencer environment, sequences are made through a combination of 'cylinders' and 'pegs'. This is similar in principle to a mechanical music box. In a music box, sound is usually produced by a peg (sometimes referred to as a pin) flicking a metal comb. Since our sequencer is not constrained by the physical world, sound is produced when two pegs interact or rather "collide" together. This allows for an increased level of complexity and some interesting dynamics to play with.
 
-Please see this [demonstration](https://youtu.be/n6PXqLJToTs 'demonstration') where you can see what this looks like in practice.
+Please see this [demonstration video](https://youtu.be/n6PXqLJToTs 'demonstration video') where you can see what this looks like in practice.
 
 or check out the software for yourself at [rhythmachines url](amalgah.github.io).
 
