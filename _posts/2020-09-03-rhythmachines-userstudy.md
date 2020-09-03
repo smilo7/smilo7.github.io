@@ -10,7 +10,7 @@ In our environment, sequences are made through a combination of cylinders and pe
 
 Please see this [demonstration](https://youtu.be/n6PXqLJToTs 'demonstration') where you can see what this looks like in practice.
 
-[!](https://upload.wikimedia.org/wikipedia/commons/1/1b/Barrel-organ_1.png)
+![image of barrel](https://upload.wikimedia.org/wikipedia/commons/1/1b/Barrel-organ_1.png)
 
 
 This week we are running a user study in order to evaluate the software and if this all seems intriguing to you please sign up here. particularly, we are looking for musicians programmers or anyone with an interest. Written and video tutorials are provided for different aspects of the system, so please sign up and get involved.
