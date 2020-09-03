@@ -14,7 +14,7 @@ In our sequencer environment, sequences are made through a combination of 'cylin
 
 Please see this [demonstration video](https://youtu.be/n6PXqLJToTs 'demonstration video') where you can see what this looks like in practice.
 
-or check out the software for yourself at [](amalgah.github.io).
+or check out the software for yourself at [amalgah.github.io](amalgah.github.io).
 
 __This week__ we are running a user study in order to evaluate the software. If any of this sounds intriguing to you please sign up [here](https://universityofsussex.eu.qualtrics.com/jfe/form/SV_5u9tg4cbEupNyf3). More information will be sent out to those who sign up.
 
