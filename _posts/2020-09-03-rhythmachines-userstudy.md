@@ -16,7 +16,7 @@ Please see this [demonstration video](https://youtu.be/n6PXqLJToTs 'demonstratio
 
 or check out the software for yourself at [](amalgah.github.io).
 
-__This week__ we are running a user study in order to evaluate the software. If any of this sounds intriguing to you please sign up here. More infomation will be sent out to those who sign up.
+__This week__ we are running a user study in order to evaluate the software. If any of this sounds intriguing to you please sign up [here](https://universityofsussex.eu.qualtrics.com/jfe/form/SV_5u9tg4cbEupNyf3). More information will be sent out to those who sign up.
 
 We are particularly looking for musicians, programmers, artists or anyone with an interest in experimenting with new tools for musical expression.
 
