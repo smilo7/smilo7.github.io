@@ -10,72 +10,107 @@ const dotsPerCluster = 30;
 let globalClusterData = null;
 
 // Create dot-based header text
-function createHeaderText() {
+function createHeaderText(customText = 'AMALGAH.NET') {
   const headerText = document.getElementById('header-text');
   if (!headerText) return;
-  
-  const text = 'AMALGAH.NET';
+
+  const text = customText.toUpperCase(); // Convert text to uppercase
   const letterWidth = 30;
   const letterHeight = 60;
   const spacing = 10;
   let totalWidth = text.length * (letterWidth + spacing) - spacing;
-  
+
   headerText.style.width = totalWidth + 'px';
-  
+
   const letterPaths = {
-      'A': [[0.5, 0], [0, 1], [0.2, 0.6], [0.8, 0.6], [1, 1], [0.5, 0]],
-      'M': [[0, 1], [0, 0], [0.5, 0.5], [1, 0], [1, 1]],
-      'L': [[0, 0], [0, 1], [1, 1]],
-      'G': [[0.75, 0], [0.25, 0], [0, 0.25], [0, 0.75], [0.25, 1], [0.75, 1], [1, 0.75], [1, 0.5], [0.5, 0.5]],
-      'H': [[0, 0], [0, 1], [0, 0.5], [1, 0.5], [1, 0], [1, 1]],
-      '.': [[0.5, 0.9], [0.5, 1]],
-      'N': [[0, 1], [0, 0], [1, 1], [1, 0]], 
-      'E': [[0, 0], [0, 1], [1, 1], [0, 1], [0, 0.5], [0.8, 0.5], [0, 0.5], [0, 0], [1, 0]],  // Capital E
-      'T': [[0.5, 0], [0.5, 1], [0.5, 0], [0, 0], [1, 0]]
+    'A': [[0.5, 0], [0, 1], [0.2, 0.6], [0.8, 0.6], [1, 1], [0.5, 0]],
+    'B': [[0, 1], [0, 0], [0.8, 0], [1, 0.2], [0.8, 0.4], [0, 0.4], [0.8, 0.4], [1, 0.6], [0.8, 0.8], [0, 0.8], [0, 1]],
+    'C': [[1, 0], [0.5, 0], [0, 0.5], [0.5, 1], [1, 1]],
+    'D': [[0, 1], [0, 0], [0.7, 0], [1, 0.3], [1, 0.7], [0.7, 1], [0, 1]],
+    'E': [[0, 0], [0, 1], [1, 1], [0, 1], [0, 0.5], [0.8, 0.5], [0, 0.5], [0, 0], [1, 0]],
+    'F': [[1, 0], [0, 0], [0, 1], [0, 0.5], [0.8, 0.5]],
+    'G': [[0.75, 0], [0.25, 0], [0, 0.25], [0, 0.75], [0.25, 1], [0.75, 1], [1, 0.75], [1, 0.5], [0.5, 0.5]],
+    'H': [[0, 0], [0, 1], [0, 0.5], [1, 0.5], [1, 0], [1, 1]],
+    'I': [[0.5, 0], [0.5, 1]],
+    'J': [[1, 0], [0.5, 0], [0.5, 1], [0, 1]],
+    'K': [[0, 0], [0, 1], [0, 0.5], [1, 0], [0, 0.5], [1, 1]],
+    'L': [[0, 0], [0, 1], [1, 1]],
+    'M': [[0, 1], [0, 0], [0.5, 0.5], [1, 0], [1, 1]],
+    'N': [[0, 1], [0, 0], [1, 1], [1, 0]],
+    'O': [[0.5, 0], [0, 0.5], [0.5, 1], [1, 0.5], [0.5, 0]],
+    'P': [[0, 1], [0, 0], [0.8, 0], [1, 0.2], [0.8, 0.4], [0, 0.4]],
+    'Q': [[0.5, 0], [0, 0.5], [0.5, 1], [1, 0.5], [0.5, 0], [0.7, 0.7], [1, 1]],
+    'R': [[0, 1], [0, 0], [0.8, 0], [1, 0.2], [0.8, 0.4], [0, 0.4], [1, 1]],
+    'S': [[1, 0], [0.5, 0], [0, 0.5], [0.5, 0.5], [1, 0.5], [0.5, 1], [0, 1]],
+    'T': [[0.5, 0], [0.5, 1], [0.5, 0], [0, 0], [1, 0]],
+    'U': [[0, 0], [0, 1], [0, 1], [1, 1], [1, 0]],
+    'V': [[0, 0], [0.5, 1], [1, 0]],
+    'W': [[0, 0], [0.25, 1], [0.5, 0.5], [0.75, 1], [1, 0]],
+    'X': [[0, 0], [1, 1], [0.5, 0.5], [0, 1], [1, 0]],
+    'Y': [[0, 0], [0.5, 0.5], [1, 0], [0.5, 0.5], [0.5, 1]],
+    'Z': [[0, 0], [1, 0], [0, 1], [1, 1]],
+    '.': [[0.5, 0.9], [0.5, 1]],
+
+
+    // 'A': [[0.5, 0], [0, 1], [0.2, 0.6], [0.8, 0.6], [1, 1], [0.5, 0]],
+    // 'M': [[0, 1], [0, 0], [0.5, 0.5], [1, 0], [1, 1]],
+    // 'L': [[0, 0], [0, 1], [1, 1]],
+    // 'G': [[0.75, 0], [0.25, 0], [0, 0.25], [0, 0.75], [0.25, 1], [0.75, 1], [1, 0.75], [1, 0.5], [0.5, 0.5]],
+    // 'H': [[0, 0], [0, 1], [0, 0.5], [1, 0.5], [1, 0], [1, 1]],
+    // '.': [[0.5, 0.9], [0.5, 1]],
+    // 'N': [[0, 1], [0, 0], [1, 1], [1, 0]],
+    // 'E': [[0, 0], [0, 1], [1, 1], [0, 1], [0, 0.5], [0.8, 0.5], [0, 0.5], [0, 0], [1, 0]],
+    // 'T': [[0.5, 0], [0.5, 1], [0.5, 0], [0, 0], [1, 0]],
+    // 'P': [[0, 1], [0, 0], [0.8, 0], [1, 0.2], [0.8, 0.4], [0, 0.4]],
+    // 'R': [[0, 1], [0, 0], [0.8, 0], [1, 0.2], [0.8, 0.4], [0, 0.4], [1, 1]],
+    // 'O': [[0.5, 0], [0, 0.5], [0.5, 1], [1, 0.5], [0.5, 0]],
+    // 'J': [[1, 0], [0.5, 0], [0.5, 1], [0, 1]],
+    // 'C': [[1, 0], [0.5, 0], [0, 0.5], [0.5, 1], [1, 1]],
+    // 'S': [[1, 0], [0.5, 0], [0, 0.5], [0.5, 0.5], [1, 0.5], [0.5, 1], [0, 1]],
+    // 'B': [[0, 1], [0, 0], [0.8, 0], [1, 0.2], [0.8, 0.4], [0, 0.4], [0.8, 0.4], [1, 0.6], [0.8, 0.8], [0, 0.8], [0, 1]],
+    // 'U': [[0, 0], [0, 1], [0, 1], [1, 1], [1, 0]]
   };
-  
+
   const dotsPerLine = 8;
   let headerDots = [];
-  
+
   for (let i = 0; i < text.length; i++) {
-      const char = text[i];
-      const pathKey = char.match(/[a-z]/) ? char : char.toUpperCase();
-      const path = letterPaths[pathKey] || [];
-      const startX = i * (letterWidth + spacing);
-      
-      if (path.length === 0) continue;
-      
-      for (let j = 0; j < path.length - 1; j++) {
-          const [x1, y1] = path[j];
-          const [x2, y2] = path[j + 1];
-          
-          for (let d = 0; d <= dotsPerLine; d++) {
-              const t = d / dotsPerLine;
-              const x = x1 + (x2 - x1) * t;
-              const y = y1 + (y2 - y1) * t;
-              
-              const dot = document.createElement('div');
-              dot.className = 'header-dot';
-              dot.style.left = (startX + x * letterWidth) + 'px';
-              dot.style.top = (y * letterHeight) + 'px';
-              headerDots.push(dot);
-          }
+    const char = text[i];
+    const path = letterPaths[char] || [];
+    const startX = i * (letterWidth + spacing);
+
+    if (path.length === 0) continue;
+
+    for (let j = 0; j < path.length - 1; j++) {
+      const [x1, y1] = path[j];
+      const [x2, y2] = path[j + 1];
+
+      for (let d = 0; d <= dotsPerLine; d++) {
+        const t = d / dotsPerLine;
+        const x = x1 + (x2 - x1) * t;
+        const y = y1 + (y2 - y1) * t;
+
+        const dot = document.createElement('div');
+        dot.className = 'header-dot';
+        dot.style.left = (startX + x * letterWidth) + 'px';
+        dot.style.top = (y * letterHeight) + 'px';
+        headerDots.push(dot);
       }
+    }
   }
-  
+
   headerDots = shuffleArray(headerDots);
   headerDots.forEach(dot => headerText.appendChild(dot));
-  
+
   headerDots.forEach((dot, index) => {
-      gsap.to(dot, {
-          scale: 1,
-          delay: 0.01 * index,
-          duration: 0.1,
-          ease: "power1.out"
-      });
+    gsap.to(dot, {
+      scale: 1,
+      delay: 0.002 * index,
+      duration: 0.1,
+      ease: "power1.out"
+    });
   });
 }
-
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -227,14 +262,15 @@ function setupHoverEvents(clusterData) {
 }
 
 function init() {
-  createHeaderText();
+  const pageTitle = document.title.split('|')[0].trim(); // Extract page title
+  createHeaderText(pageTitle); // Pass the page title as the header text
   clusterPositions();
   globalClusterData = generateDots();
-  
+
   if (globalClusterData.length > 0) {
-      setupHoverEvents(globalClusterData);
-      setTimeout(animateClustersEntrance, 100);
-      animateAllDots(globalClusterData);
+    setupHoverEvents(globalClusterData);
+    setTimeout(animateClustersEntrance, 100);
+    animateAllDots(globalClusterData);
   }
 }
 
