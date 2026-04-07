@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Papers | AMALGAH.net</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="../js/main.js"></script>
+</head>
+<body class="papers-page">
+  <div class="header">
+    <div class="header-text" id="header-text"></div>
+  </div>
+
+  <div class="content">
+    <h3>Papers</h3>
+
+    <h4>2025</h4>
+    <ul>
+      <li>
+        <a href="../assets/papers/cmc_research.pdf" target="pdf-viewer-frame">
+          Growing Sounds: Spectrogram Generation with Neural Cellular Automata and Synthesis with BigVGAN
+        </a>
+      </li>
+      <li>
+        <a href="../assets/papers/amplab_research.pdf" target="pdf-viewer-frame">
+          Tablature Analysis of Music Using Non-Standard Guitar Tunings
+        </a>
+      </li>
+      <li>
+        <a href="../assets/papers/mir_research.pdf" target="pdf-viewer-frame">
+          More Beats! Fail Case Analysis, Data Augmentation Strategies and Fine Tuning Beat Prediction Models
+        </a>
+      </li>
+    </ul>
+
+    <hr>
+
+    <h4>2020</h4>
+    <ul>
+      <li>
+        <a href="../assets/papers/jra_research.pdf" target="pdf-viewer-frame">
+          Creating a Web Based 3D Sequencer in order to Investigate its Effects on Composition
+        </a>
+      </li>
+    </ul>
+
+    <h4 id="viewer-title" class="viewer-hidden">Viewer</h4>
+    <iframe
+      id="pdf-viewer"
+      class="pdf-viewer viewer-hidden"
+      name="pdf-viewer-frame"
+      title="PDF viewer">
+    </iframe>
+
+    <a href="../projects/" class="nav-home">← Back to Projects</a>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const paperLinks = document.querySelectorAll('a[target="pdf-viewer-frame"]');
+      const viewer = document.getElementById("pdf-viewer");
+      const viewerTitle = document.getElementById("viewer-title");
+
+      paperLinks.forEach(function (link) {
+        link.addEventListener("click", function () {
+          viewer.classList.remove("viewer-hidden");
+          viewerTitle.classList.remove("viewer-hidden");
+        });
+      });
+    });
+  </script>
+</body>
+</html>
