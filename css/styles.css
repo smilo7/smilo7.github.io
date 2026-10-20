@@ -5,27 +5,31 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
-  overflow: hidden;
   position: relative;
   background: linear-gradient(135deg, #fff5e6, #fff0f5);
+  overflow-x: hidden;
 }
 
+/* Responsive header that scales with viewport */
 .header {
   position: absolute;
-  top: 40px;
+  top: 20px;
   left: 0;
   width: 100%;
   display: flex;
   justify-content: center;
   z-index: 10;
+  pointer-events: none; /* Prevent header from blocking interactions */
 }
 
 .header-text {
   position: relative;
-  height: 80px;
-  margin-bottom: 40px;
+  min-height: 70px;
+  margin-bottom: 20px;
+  max-width: 90vw;
+  overflow: visible;
 }
 
 .header-dot {
@@ -36,8 +40,27 @@ body {
   background-color: #333;
   opacity: 0.8;
   transform: scale(0);
+  transition: transform 0.1s ease;
 }
 
+/* Responsive scaling for header dots */
+@media (max-width: 600px) {
+  .header {
+    top: 15px;
+  }
+  
+  .header-text {
+    min-height: 50px;
+    margin-bottom: 15px;
+  }
+  
+  .header-dot {
+    width: 3px;
+    height: 3px;
+  }
+}
+
+/* Home page container for clusters */
 .container {
   position: relative;
   width: 90vw;
@@ -45,6 +68,13 @@ body {
   max-width: 500px;
   max-height: 500px;
   margin-top: 120px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    height: 60vh;
+    margin-top: 100px;
+  }
 }
 
 /* Cluster styles */
@@ -80,43 +110,116 @@ body {
   top: 0;
   left: 0;
   z-index: 2;
-  padding: 5px 10px;
+  padding: 8px 14px;
   border-radius: 5px;
   white-space: nowrap;
-  transition: transform 0.3s ease;
-  color: #333;;
-  /* text-shadow: 0px 0px 3px rgba(0,0,0,0.7); */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  color: #333;
   text-decoration: none;
   font-family: inherit;
+  font-size: 16px;
 }
 
 .cluster .text:hover {
   transform: scale(1.2);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive cluster text */
+@media (max-width: 600px) {
+  .cluster .text {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+  
+  .dot {
+    width: 4px;
+    height: 4px;
+  }
+  
+  .dots {
+    width: 80px;
+    height: 80px;
+  }
 }
 
 /* Content styles for subpages */
 .content {
-  margin-top: 150px;
+  margin-top: 120px;
   max-width: 600px;
+  width: 90vw;
   padding: 20px;
   text-align: left;
   overflow-y: auto;
+  line-height: 1.6;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
-.nav-home {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: rgba(255,255,255,0.7);
-  padding: 10px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-  color: #333;
+@media (max-width: 600px) {
+  .content {
+    margin-top: 90px;
+    padding: 15px;
+    font-size: 15px;
+  }
+}
+
+/* Typography improvements */
+h1, h2, h3, h4 {
   font-family: 'Courier New', monospace;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12px;
+  line-height: 1.4;
 }
 
-.nav-home:hover {
-  background-color: rgba(255,255,255,0.9);
+.content h3 {
+  font-size: 20px;
+  margin-top: 24px;
+}
+
+.content h4 {
+  font-size: 18px;
+  margin-top: 20px;
+  color: #555;
+}
+
+@media (max-width: 600px) {
+  .content h3 {
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  
+  .content h4 {
+    font-size: 16px;
+  }
+}
+
+.content p {
+  margin: 12px 0;
+  color: #444;
+}
+
+/* Link styling - make them more visible */
+.content a:link,
+.content a:visited {
+  color: #0066cc;
+  text-decoration: underline;
+  word-break: break-word;
+}
+
+.content a:hover,
+.content a:active {
+  color: #004499;
+  text-decoration: none;
+}
+
+
+
+/* Horizontal rule styling */
+hr {
+  margin: 28px 0;
+  border: 0;
+  border-top: 1px solid #ddd;
 }
 
 /* Papers page only */
@@ -143,4 +246,52 @@ body {
 
 .papers-page .viewer-hidden {
   display: none;
+}
+
+/* Better list styling */
+ul {
+  list-style-type: disc;
+}
+
+/* Focus states for accessibility */
+a:focus,
+button:focus {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(0, 102, 204, 0.2);
+  color: #333;
+}
+
+/* Smooth transitions for interactive elements */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Prevent text selection on cluster text (optional) */
+.cluster .text {
+  user-select: none;
+}
+
+/* Back arrow for secondary pages */
+.content .back-arrow,
+.back-arrow {
+  font-family: 'Courier New', monospace;
+  font-size: 20px;
+  margin-right: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #333;
+}
+
+/* Responsive back arrow */
+@media (max-width: 600px) {
+  .content .back-arrow,
+  .back-arrow {
+    font-size: 16px;
+    margin-right: 8px;
+  }
 }

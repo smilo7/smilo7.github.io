@@ -15,12 +15,28 @@ function createHeaderText(customText = 'AMALGAH.NET') {
   if (!headerText) return;
 
   const text = customText.toUpperCase(); // Convert text to uppercase
-  const letterWidth = 30;
-  const letterHeight = 60;
-  const spacing = 10;
+  
+  // Responsive sizing based on viewport width
+  const viewportWidth = window.innerWidth;
+  let letterWidth, letterHeight, spacing;
+  
+  if (viewportWidth < 600) {
+    letterWidth = 20;
+    letterHeight = 40;
+    spacing = 6;
+  } else {
+    letterWidth = 30;
+    letterHeight = 60;
+    spacing = 10;
+  }
+  
   let totalWidth = text.length * (letterWidth + spacing) - spacing;
-
-  headerText.style.width = totalWidth + 'px';
+  
+  // Ensure it doesn't exceed max width
+  const maxHeaderWidth = Math.min(totalWidth, viewportWidth * 0.9);
+  const scaleFactor = maxHeaderWidth / totalWidth;
+  
+  headerText.style.width = maxHeaderWidth + 'px';
 
   const letterPaths = {
     'A': [[0.5, 0], [0, 1], [0.2, 0.6], [0.8, 0.6], [1, 1], [0.5, 0]],
@@ -275,6 +291,14 @@ function init() {
 }
 
 function handleResize() {
+  // Recreate header text with new responsive sizing
+  const pageTitle = document.title.split('|')[0].trim();
+  const headerText = document.getElementById('header-text');
+  if (headerText) {
+    headerText.innerHTML = '';
+    createHeaderText(pageTitle);
+  }
+  
   clusterPositions();
   
   document.querySelectorAll('.cluster').forEach(cluster => {
